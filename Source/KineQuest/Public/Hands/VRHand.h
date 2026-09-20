@@ -4,9 +4,11 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
-#include "MotionControllerComponent.h"
-#include "Components/WidgetInteractionComponent.h"
 #include "VRHand.generated.h"
+
+class UMotionControllerComponent;
+class USkeletalMeshComponent;
+class UWidgetInteractionComponent;
 
 
 
