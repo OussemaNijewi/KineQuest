@@ -19,9 +19,32 @@ AVRHand::AVRHand()
 	WidgetInteractionComponent->SetupAttachment(HandMesh);
 }
 
+void AVRHand::OnConstruction(const FTransform& Transform)
+{
+	Super::OnConstruction(Transform);
+
+	switch (HandType)
+	{
+	case EControllerHand::Left:
+		MotionController->MotionSource = "Left";
+		break;
+	case EControllerHand::Right:
+		MotionController->MotionSource = "Right";
+		break;
+	default:
+		break;
+	}
+}
+
 void AVRHand::BeginPlay()
 {
 	Super::BeginPlay();
+
+	if (HandType != EControllerHand::Left && HandType != EControllerHand::Right)
+	{
+		if (GEngine)
+			GEngine->AddOnScreenDebugMessage(-1, 4.f, FColor::Red, FString::Printf(TEXT("class %s:  Wrong HandType"), *GetClass()->GetName()));
+	}
 	
 }
 

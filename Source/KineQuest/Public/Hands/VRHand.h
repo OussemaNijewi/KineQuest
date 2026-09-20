@@ -21,8 +21,11 @@ public:
 	AVRHand();
 
 protected:
+	virtual void OnConstruction(const FTransform& Transform) override;
 	virtual void BeginPlay() override;
 	virtual void Tick(float DeltaTime) override;
+
+	//Components
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Components")
 	//used to track the physical hardware in physical world and match that in VR world
@@ -34,8 +37,16 @@ protected:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Components|Hands")
 	TObjectPtr<UWidgetInteractionComponent> WidgetInteractionComponent;
 
+	//Hand Data
+	//Defines which hand it is
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Components|Hands|HandData")
+	EControllerHand HandType;
 
-public:	
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Components|Hands|HandData")
+	bool MirrorAnimation;
+
+
+private:	
 	
 
 };
