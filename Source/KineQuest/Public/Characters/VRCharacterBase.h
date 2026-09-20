@@ -6,6 +6,8 @@
 #include "GameFramework/Character.h"
 #include "VRCharacterBase.generated.h"
 
+class UCameraComponent;
+
 UCLASS()
 class KINEQUEST_API AVRCharacterBase : public ACharacter
 {
@@ -16,5 +18,12 @@ public:
 
 protected:
 	virtual void BeginPlay() override;
+
+	// Components
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	TObjectPtr<UCameraComponent> Camera;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	TObjectPtr<USceneComponent> Origin;
 
 };
