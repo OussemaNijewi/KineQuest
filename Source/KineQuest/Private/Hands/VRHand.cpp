@@ -2,6 +2,8 @@
 
 
 #include "Hands/VRHand.h"
+#include "MotionControllerComponent.h"
+#include "Components/WidgetInteractionComponent.h"
 
 AVRHand::AVRHand()
 {
