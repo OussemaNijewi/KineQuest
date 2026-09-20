@@ -1,10 +1,14 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+// Copyright Epic Games, Inc. All Rights Reserved.
 
 #pragma once
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
+#include "MotionControllerComponent.h"
+#include "Components/WidgetInteractionComponent.h"
 #include "VRHand.generated.h"
+
+
 
 UCLASS()
 class KINEQUEST_API AVRHand : public AActor
@@ -12,15 +16,24 @@ class KINEQUEST_API AVRHand : public AActor
 	GENERATED_BODY()
 	
 public:	
-	// Sets default values for this actor's properties
 	AVRHand();
 
 protected:
-	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
+	virtual void Tick(float DeltaTime) override;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Components")
+	//used to track the physical hardware in physical world and match that in VR world
+	UMotionControllerComponent* MotionController;
+	//physical 3d representation of the hand and animations
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Components|Hands")
+	USkeletalMeshComponent* HandMesh;
+	//used to let players interact with 3D UI menus in the game world
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Components|Hands")
+	UWidgetInteractionComponent* WidgetInteractionComponent;
+
 
 public:	
-	// Called every frame
-	virtual void Tick(float DeltaTime) override;
+	
 
 };
